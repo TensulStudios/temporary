@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporary Studios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            text-align: center;
+        }
+
+        nav {
+            background: #111111;
+            border-bottom: 1px solid #222222;
+            padding: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .hero {
+            padding: 150px 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 400px;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .description {
+            font-size: 20px;
+            color: #888888;
+        }
+
+        section {
+            padding: 80px 20px;
+        }
+
+        section h2 {
+            font-size: 40px;
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: #111111;
+            border: 1px solid #222222;
+            padding: 20px 10px;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+        }
+
+        .game-card:hover {
+            border-color: #444444;
+        }
+
+        .game-icon {
+            width:350px;
+            font-size: 60px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+        }
+
+        .game-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .game-card p {
+            color: #888888;
+            font-size: 16px;
+        }
+
+        .contact-info p {
+            font-size: 20px;
+            color: #888888;
+            margin-bottom: 30px;
+        }
+
+        .contact-email {
+            font-size: 24px;
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 5px;
+        }
+
+        footer {
+            border-top: 1px solid #222222;
+            padding: 40px;
+            color: #555555;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="#games">Games</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <img src="https://raw.githubusercontent.com/TensulStudios/temporary/main/TemporaryStudiosLogo.png" style="width:750px;">
+        </div>
+    </div>
+
+    <section id="games">
+        <h2>Games</h2>
+        <div class="games-grid">
+            <div class="game-card">
+                <img class="game-icon" src="https://raw.githubusercontent.com/TensulStudios/temporary/main/chemp.png">
+                <h3>ChempWorks</h3>
+                <p>Chempworks is a multiplayer, physics-based sandbox game made with GPL2.</p>
+            </div>
+            <div class="game-card">
+                <img class="game-icon" src="">
+                <h3>Unnamed Project</h3>
+                <p></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact at:</h2>
+        <div class="contact-info">
+            <a href="mailto:contact@temporarystudios.com" class="contact-email">contact@temporarystudios.com</a>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
