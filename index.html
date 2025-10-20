@@ -20,6 +20,9 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            user-select:none;
+            user-drag: none;
+            -webkit-user-drag: none;
         }
 
         body {
@@ -52,7 +55,7 @@
         }
 
         .hero {
-            padding: 150px 20px;
+            padding: 10px 20px;
             position: relative;
         }
 
@@ -120,7 +123,7 @@
         }
 
         .game-icon {
-            width:350px;
+            width:80%;
             font-size: 60px;
             margin-bottom: 40px;
             border-radius: 15px;
@@ -162,19 +165,22 @@
 <body>
     <nav>
         <div class="nav-links">
-            <a href="#games">Games</a>
+            <a href="#about">About</a>
+            <a href="#games">Projects</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <div class="hero">
+        <h2>About</h2>
         <div class="hero-content">
-            <img src="https://raw.githubusercontent.com/TensulStudios/temporary/main/TemporaryStudiosLogo.png" style="width:750px;">
+            <img src="https://raw.githubusercontent.com/TensulStudios/temporary/main/TemporaryStudiosLogo.png" style="width:100%; max-width:750px;">
+            <div class="description">An indie development group founded by Open</div>
         </div>
     </div>
 
     <section id="games">
-        <h2>Projects:</h2>
+        <h2>Projects</h2>
         <div class="games-grid">
             <div class="game-card">
                 <img class="game-icon" src="https://raw.githubusercontent.com/TensulStudios/temporary/main/chemp.png">
@@ -184,9 +190,11 @@
                 <p>Available on Meta Horizon Store.</p>
             </div>
             <div class="game-card">
-                <img class="game-icon" src="">
-                <h3><a class="contact-email" href="#">Unnamed Project</a></h3>
-                <p></p>
+                <img class="game-icon" src="https://raw.githubusercontent.com/TensulStudios/fireDefaultAssets/refs/heads/main/identifiers/discord/large.gif">
+                <h3><a class="contact-email" href="https://haze.temporarystudios.org">Haze</a></h3>
+                <p>Haze is OpenTK based game engine written entirely in C#</p>
+                </br>
+                <p>Currently publicly unavailable.</p>
             </div>
         </div>
     </section>
