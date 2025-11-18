@@ -1,0 +1,14 @@
+{
+  "objects": [
+    {
+      "package": {
+        "name": "com.temporarystudios.test",
+        "version": "1.0.1",
+        "description": "Temporary Studio test, if you see this success. NPM link is a test/",
+        "links": {
+          "npm": "com.stresslevelzero.static-batching"
+        }
+      }
+    }
+  ]
+}
