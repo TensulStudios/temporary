@@ -7,6 +7,10 @@
     {
       "source": "/com.temporarystudios.tmod",
       "destination": "/api/com.temporarystudios.tmod"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
     }
   ]
 }
