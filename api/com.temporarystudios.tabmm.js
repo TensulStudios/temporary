@@ -9,7 +9,7 @@ export default function handler(req, res) {
         description: "TABMM is a mod manager that handles scripts, shaders and compilation.\n\nYou can allow users to create mods for your game, and use loaded mods however you want!\n\nFor now, players can only use shaders in your game.",
         unity: "2019.1",
         dist: {
-          tarball: "https://github.com/TensulStudios/tabmm/archive/refs/tags/1.0.1.tar.gz"
+          tarball: "https://temporarystudios.org/packages/com.temporarystudios.tabmm-1.0.1.tgz"
         }
       }
     },
