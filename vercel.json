@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/com.temporarystudios.tabmm",
+      "destination": "/api/com.temporarystudios.tabmm"
+    }
+  ]
+}
