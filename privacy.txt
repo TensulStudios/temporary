@@ -1,4 +1,4 @@
-Temporary Studios does not collect any personal information directly from players. Our VR game uses third-party services, PlayFab and Photon, which may collect limited data needed for gameplay features such as player authentication and multiplayer networking. We do not access, store, or share this data ourselves.
+Temporary Studios does not collect any personal information directly from players. Our games uses third-party services, PlayFab and Photon, which may collect limited data needed for gameplay features such as player authentication and multiplayer networking. We do not access, store, or share this data ourselves.
 
 For more information, please review their privacy policies:
 PlayFab: https://privacy.microsoft.com/en-us/privacystatement
