@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/pt_horror/privacypolicy",
+      "destination": "/privacy"
+    }
+  ]
+}
