@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/pt_horror/privacypolicy",
-      "destination": "/privacy"
+      "destination": "/privacy.txt"
     }
   ]
 }
