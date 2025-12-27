@@ -75,7 +75,7 @@
         const parts = path.split('/').filter(p => p);
         
         if (parts.length > 0 && parts[0].toLowerCase() !== 'privacypolicy') {
-            const gameName = parts[0];
+            const gameName = parts[0].toUpperCase();
             document.getElementById('title').textContent = `Notice of ${gameName} Privacy`;
             document.title = `${gameName} Privacy Policy`;
         }
