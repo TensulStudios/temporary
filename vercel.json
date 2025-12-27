@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/:any*/privacypolicy",
-      "destination": "/privacy.md"
+      "destination": "/privacy.html"
     }
   ]
 }
