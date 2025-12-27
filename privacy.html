@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #888888;
+            font-size: 16px;
+        }
+
+        a {
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        a:hover {
+            color: #cccccc;
+        }
+
+        .service {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Notice of Temporary Studios Privacy</h1>
+    
+    <p>Our games use a few services to make certain features work properly:</p>
+    
+    <p><strong>Temporary Analytics:</strong> We collect some information about how people play our game using a tool that we built. This helps us make the game better for players fix problems and make sure the game is fair. We do not collect any information, about players using Temporary Analytics. The information we get from Temporary Analytics is used to improve the player experience fix bugs and improve game balance with Temporary Analytics.</p>
+    
+    <p><strong>PlayFab and Photon</strong> are services we use. These services need to collect a bit of information so people can play together and log in. PlayFab and Photon only take what they need for multiplayer and to check who the players are. We do not look at this information we do not keep it. We do not give it to anyone else.</p>
+    
+    <p>Please review their privacy policies for more details:</p>
+    
+    <p class="service">PlayFab: <a href="https://privacy.microsoft.com/en-us/privacystatement">https://privacy.microsoft.com/en-us/privacystatement</a></p>
+    
+    <p class="service">Photon: <a href="https://dashboard.photonengine.com/account/privacyandcookiepolicy">https://dashboard.photonengine.com/account/privacyandcookiepolicy</a></p>
+    
+    <p>Please email us at <a href="mailto:request@temporarystudios.org">request@temporarystudios.org</a> if you would like your data to be deleted from any of our games.</p>
+
+    <script>
+        const path = window.location.pathname;
+        const parts = path.split('/').filter(p => p);
+        
+        if (parts.length > 0 && parts[0].toLowerCase() !== 'privacypolicy') {
+            const gameName = parts[0];
+            document.getElementById('title').textContent = `Notice of ${gameName} Privacy`;
+            document.title = `${gameName} Privacy Policy`;
+        }
+    </script>
+</body>
+</html>
