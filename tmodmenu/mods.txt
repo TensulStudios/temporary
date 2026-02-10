@@ -1,0 +1,34 @@
+[Player Mods]
+
+Player Info
+Mod Check
+Goto
+Headsit
+Lag
+Tag
+
+[Movement]
+
+Platforms
+Fly
+Teleport Gun
+Wall Walk
+Speed Boost
+Invisible [B]
+Ghost [A]
+Noclip [GR]
+
+[Safety]
+
+Anti Report
+
+[Visual]
+
+Chams
+Tracers
+
+[Advantage]
+Lag All
+Lag Gun
+Tag All
+Tag Gun
