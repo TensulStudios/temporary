@@ -1,34 +1,32 @@
 [Player Mods]
 
-Player Info
-Mod Check
-Goto
-Headsit
-Lag
-Tag
+Player Info - Shows info such as platform, id etc.
+Mod Check - Detects mods.
+Goto - Teleports you to the target.
+Headsit - Constantly teleports you to the target.
+Lag - Lags the target.
+Tag - Tags the target (if you are tagged).
 
 [Movement]
 
-Platforms
-Fly
-Teleport Gun
-Wall Walk
-Speed Boost
-Invisible [B]
-Ghost [A]
-Noclip [GR]
+Fly - Hold [A] to fly forward.
+Teleport Gun - Hold [GRIP] and [TRIGGER] to teleport.
+Wall Walk - Pulls you towards the wall.
+Speed Boost - Gives you a speed boost.
+Invisible [B] - Hides your rig down.
+Ghost [A] - Freezes your rig.
+Noclip [GRIP] - Disables all colliders.
 
 [Safety]
 
-Anti Report
+Anti Report - Disconnects you when a player is near your report button.
 
 [Visual]
 
-Chams
-Tracers
+Chams - Lets you see player fur through walls.
 
 [Advantage]
-Lag All
-Lag Gun
-Tag All
-Tag Gun
+Lag All - Lags all.
+Lag Gun - Lags a target.
+Tag All - Tags all.
+Tag Gun - Tags a target.
