@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChempLab — Gamemode Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0e0e;
+    --surface: #161616;
+    --surface2: #1e1e1e;
+    --border: #2a2a2a;
+    --border2: #333;
+    --text: #e8e8e8;
+    --muted: #888;
+    --accent: #d4ff00;
+    --accent-dim: #a8cc00;
+    --error: #ff4444;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--surface);
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .logo-mark svg { display: block; }
+
+  .logo-text {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+
+  .logo-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+
+  .page-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 48px;
+  }
+
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    background: #1a1f00;
+    border: 1px solid var(--accent-dim);
+    padding: 2px 6px;
+    letter-spacing: 0.06em;
+  }
+
+  .section-title {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field.full { grid-column: 1 / -1; }
+
+  label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  input, textarea {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 10px 14px;
+    outline: none;
+    width: 100%;
+    resize: none;
+  }
+
+  input:focus, textarea:focus {
+    border-color: var(--accent);
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: #444;
+  }
+
+  .editor-wrap {
+    position: relative;
+    border: 1px solid var(--border2);
+    background: #1a1a1a;
+  }
+
+  .editor-wrap:focus-within {
+    border-color: var(--accent);
+  }
+
+  .editor-toolbar {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 6px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .editor-lang {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .editor-hint {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .code-input-area {
+    position: relative;
+    min-height: 260px;
+  }
+
+  #lua-input {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    min-height: 260px;
+    background: transparent;
+    color: transparent;
+    caret-color: var(--accent);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 16px;
+    border: none;
+    outline: none;
+    resize: vertical;
+    z-index: 2;
+    tab-size: 2;
+    white-space: pre;
+    overflow: auto;
+    spellcheck: false;
+  }
+
+  #lua-highlight {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    min-height: 260px;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 16px;
+    pointer-events: none;
+    z-index: 1;
+    white-space: pre;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+
+  #lua-highlight code {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.6;
+    background: transparent !important;
+  }
+
+  /* override prism background */
+  pre[class*="language-"], code[class*="language-"] {
+    background: transparent !important;
+    text-shadow: none !important;
+    font-size: 13px;
+    font-family: var(--mono);
+  }
+
+  .preview-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+
+  .preview-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .preview-filename {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    word-break: break-all;
+  }
+
+  .preview-files {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .file-chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    padding: 4px 10px;
+    color: var(--muted);
+  }
+
+  .generate-btn {
+    display: block;
+    width: 100%;
+    background: var(--accent);
+    color: #0e0e0e;
+    border: none;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 16px;
+    cursor: pointer;
+    margin-top: 32px;
+  }
+
+  .generate-btn:hover {
+    background: #c8f200;
+  }
+
+  .generate-btn:active {
+    background: var(--accent-dim);
+  }
+
+  .error-msg {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--error);
+    margin-top: 8px;
+    display: none;
+  }
+
+  .error-msg.show { display: block; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <rect x="2" y="2" width="6" height="6" fill="#0e0e0e"/>
+      <rect x="10" y="2" width="6" height="6" fill="#0e0e0e"/>
+      <rect x="2" y="10" width="6" height="6" fill="#0e0e0e"/>
+      <rect x="10" y="10" width="6" height="6" fill="#0e0e0e"/>
+    </svg>
+  </div>
+  <span class="logo-text">ChempLab</span>
+  <span class="logo-sub">Gamemode Generator</span>
+</header>
+
+<main>
+  <div class="page-title">// tool</div>
+  <h1>Gamemode Generator</h1>
+  <p class="subtitle">Fill in your metadata and Lua code, then generate a <code style="font-family:var(--mono);font-size:12px;color:var(--accent)">.chemplab.gamemode</code> package.</p>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Metadata — manifest.json</span>
+    </div>
+    <div class="meta-grid">
+      <div class="field">
+        <label for="meta-name">Name</label>
+        <input type="text" id="meta-name" placeholder="Cube Non-Live Event" value="">
+      </div>
+      <div class="field">
+        <label for="meta-version">Version</label>
+        <input type="text" id="meta-version" placeholder="1.0.0" value="">
+      </div>
+      <div class="field">
+        <label for="meta-author">Author</label>
+        <input type="text" id="meta-author" placeholder="Temp" value="">
+      </div>
+      <div class="field">
+        <label for="meta-desc">Description</label>
+        <input type="text" id="meta-desc" placeholder="A simple hello world gamemode." value="">
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Lua Code — code.lua</span>
+    </div>
+    <div class="editor-wrap">
+      <div class="editor-toolbar">
+        <span class="editor-lang">lua</span>
+        <span class="editor-hint">Tab key inserts spaces</span>
+      </div>
+      <div class="code-input-area">
+        <textarea id="lua-input" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+        <pre id="lua-highlight"><code class="language-lua"></code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Output Preview</span>
+    </div>
+    <div class="preview-section">
+      <div class="preview-label">Output filename</div>
+      <div class="preview-filename" id="preview-name">—</div>
+      <div class="preview-files">
+        <div class="file-chip">manifest.json</div>
+        <div class="file-chip">code.lua</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="error-msg" class="error-msg">Please fill in the Name field before generating.</div>
+
+  <button class="generate-btn" id="generate-btn">Generate .chemplab.gamemode</button>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-lua.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+  const luaInput = document.getElementById('lua-input');
+  const luaHighlight = document.getElementById('lua-highlight').querySelector('code');
+  const metaName = document.getElementById('meta-name');
+  const previewName = document.getElementById('preview-name');
+  const errorMsg = document.getElementById('error-msg');
+
+  function syncHighlight() {
+    const code = luaInput.value;
+    luaHighlight.textContent = code;
+    Prism.highlightElement(luaHighlight);
+    // sync scroll
+    luaHighlight.parentElement.scrollTop = luaInput.scrollTop;
+    luaHighlight.parentElement.scrollLeft = luaInput.scrollLeft;
+  }
+
+  function syncHeight() {
+    const area = luaInput.parentElement;
+    const lines = luaInput.value.split('\n').length;
+    const minH = 260;
+    const lineH = 13 * 1.6;
+    const newH = Math.max(minH, lines * lineH + 32);
+    area.style.height = newH + 'px';
+    luaInput.style.height = newH + 'px';
+    luaHighlight.parentElement.style.height = newH + 'px';
+  }
+
+  luaInput.addEventListener('input', () => {
+    syncHighlight();
+    syncHeight();
+  });
+
+  luaInput.addEventListener('scroll', () => {
+    luaHighlight.parentElement.style.transform = `translate(-${luaInput.scrollLeft}px, -${luaInput.scrollTop}px)`;
+  });
+
+  luaInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const start = luaInput.selectionStart;
+      const end = luaInput.selectionEnd;
+      luaInput.value = luaInput.value.substring(0, start) + '  ' + luaInput.value.substring(end);
+      luaInput.selectionStart = luaInput.selectionEnd = start + 2;
+      syncHighlight();
+    }
+  });
+
+  metaName.addEventListener('input', updatePreview);
+
+  function updatePreview() {
+    const name = metaName.value.trim();
+    if (name) {
+      previewName.textContent = name + '.chemplab.gamemode';
+    } else {
+      previewName.textContent = '—';
+    }
+  }
+
+  document.getElementById('generate-btn').addEventListener('click', async () => {
+    const name = metaName.value.trim();
+    const version = document.getElementById('meta-version').value.trim();
+    const author = document.getElementById('meta-author').value.trim();
+    const desc = document.getElementById('meta-desc').value.trim();
+    const lua = luaInput.value;
+
+    if (!name) {
+      errorMsg.classList.add('show');
+      metaName.focus();
+      return;
+    }
+    errorMsg.classList.remove('show');
+
+    const manifest = {
+      Name: name,
+      Version: version || '1.0.0',
+      Author: author || '',
+      Description: desc || ''
+    };
+
+    const zip = new JSZip();
+    zip.file('manifest.json', JSON.stringify(manifest, null, 4));
+    zip.file('code.lua', lua);
+
+    const blob = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = name + '.chemplab.gamemode';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  // default lua
+  luaInput.value = `-- ChempLab Gamemode Entry Point
+
+function OnGameStart()
+    print("Hello from " .. GetGamemodeName())
+end
+
+function OnPlayerJoin(player)
+    player:SendMessage("Welcome to the gamemode!")
+end`;
+  syncHighlight();
+  syncHeight();
+</script>
+</body>
+</html>
