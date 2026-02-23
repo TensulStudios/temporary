@@ -13,7 +13,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'JetBrains Mono', monospace;
             background: #0a0a0a;
@@ -23,30 +22,25 @@
             margin: 0 auto;
             line-height: 1.6;
         }
-
         h1 {
             font-size: 28px;
             color: #ffffff;
             margin-bottom: 30px;
             font-weight: 600;
         }
-
         p {
             margin-bottom: 20px;
             color: #888888;
             font-size: 16px;
         }
-
         a {
             color: #ffffff;
             text-decoration: none;
             border-bottom: 1px solid #ffffff;
         }
-
         a:hover {
             color: #cccccc;
         }
-
         .service {
             margin-top: 10px;
             margin-bottom: 10px;
@@ -62,14 +56,15 @@
     
     <p><strong>PlayFab and Photon</strong> are services we use. These services need to collect a bit of information so people can play together and log in. PlayFab and Photon only take what they need for multiplayer and to check who the players are. We do not look at this information we do not keep it. We do not give it to anyone else.</p>
     
+    <p id="chemplab-username-notice" style="display:none;"><strong>Usernames:</strong> In CHEMPLAB, your username is collected and used as your multiplayer nickname within Photon. This allows other players to identify you during multiplayer sessions. Your username is only used for this purpose and is not shared with any third parties beyond what Photon requires to operate.</p>
+
     <p>Please review their privacy policies for more details:</p>
     
     <p class="service">PlayFab: <a href="https://privacy.microsoft.com/en-us/privacystatement">https://privacy.microsoft.com/en-us/privacystatement</a></p>
     
     <p class="service">Photon: <a href="https://dashboard.photonengine.com/account/privacyandcookiepolicy">https://dashboard.photonengine.com/account/privacyandcookiepolicy</a></p>
     
-    <p>Please email us at <a href="mailto:request@tempstudios.xyz">request@tempstudios.xyzg</a> if you would like your data to be deleted from any of our games.</p>
-
+    <p>Please email us at <a href="mailto:request@tempstudios.xyz">request@tempstudios.xyz</a> if you would like your data to be deleted from any of our games.</p>
     <script>
         const path = window.location.pathname;
         const parts = path.split('/').filter(p => p);
@@ -78,6 +73,10 @@
             const gameName = parts[0].toUpperCase();
             document.getElementById('title').textContent = `Notice of ${gameName} Privacy`;
             document.title = `${gameName} Privacy Policy`;
+
+            if (gameName === 'CHEMPLAB') {
+                document.getElementById('chemplab-username-notice').style.display = 'block';
+            }
         }
     </script>
 </body>
