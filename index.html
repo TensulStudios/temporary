@@ -199,23 +199,19 @@
                 </div>
             </div>
         </section>
-
         <section id="contact">
             <h2>Contact at:</h2>
             <div class="contact-info">
                 <a href="mailto:contact@tempstudios.xyz" class="contact-email">contact@tempstudios.xyz</a>
             </div>
         </section>
-
+        <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
         <script>
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-                });
-            });
+          kofiWidgetOverlay.draw('temporarystudios', {
+            'type': 'floating-chat',
+            'floating-chat.donateButton.text': 'Support Us',
+            'floating-chat.donateButton.background-color': '#f45d22',
+            'floating-chat.donateButton.text-color': '#fff'
+          });
         </script>
-    
-
-
 </body></html>
